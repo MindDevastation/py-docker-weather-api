@@ -2,7 +2,8 @@
 import os
 import requests
 
-def get_weather(city):
+
+def get_weather(city: str) -> None:
     api_key = os.getenv("API_KEY")
     if not api_key:
         raise Exception("API_KEY environment variable not set")
@@ -17,7 +18,10 @@ def get_weather(city):
         condition = data["current"]["condition"]["text"]
         print(f"The weather in {location}: {temp_c}°C, {condition}")
     else:
-        print(f"Failed to get weather data: {response.status_code}, {response.text}")
+        print(f"Failed to get weather data: "
+              f"{response.status_code}, "
+              f"{response.text}")
+
 
 if __name__ == "__main__":
     get_weather("Paris")
